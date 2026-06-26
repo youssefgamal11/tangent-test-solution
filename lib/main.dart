@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tangent_test_solution/first_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tangent_test_solution/core/routing/app_router.dart';
+import 'package:tangent_test_solution/core/routing/navigation_services.dart';
+import 'package:tangent_test_solution/core/routing/route_names.dart' show RouteName;
+import 'package:tangent_test_solution/core/theme/text_style.dart';
 
 void main() {
+    WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -10,8 +15,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,  
-      home: FirstPage());
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        navigatorKey: NavigationService.navigatorKey,
+        debugShowCheckedModeBanner: false,
+        title: 'Vocaburary',
+        theme: ThemeData(fontFamily: AppTextStyle.fontFamily, useMaterial3: true),
+        initialRoute: RouteName.onBoarding,
+        onGenerateRoute: AppRouter.allRoutes,
+      ),
+    );
   }
 }
