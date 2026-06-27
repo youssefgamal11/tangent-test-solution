@@ -1,5 +1,6 @@
-const _imgPath = 'assets/images/';
+const _imgPath = 'assets/images/svg/';
 
 class ImgPath {
-  static const emptyProfile = "${_imgPath}empty_profile.png";
+  static const onboardingLogo = "${_imgPath}onboarding_logo.svg";
+  static const person = "${_imgPath}person.svg";
 }
