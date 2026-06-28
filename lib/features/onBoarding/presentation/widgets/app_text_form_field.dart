@@ -8,10 +8,12 @@ class AppTextFormField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
+    this.onChanged,
   });
 
   final TextEditingController controller;
   final String hintText;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class AppTextFormField extends StatelessWidget {
       controller: controller,
       style: AppTextStyle.r16,
       cursorColor: AppColors.indigo,
+      onChanged: onChanged,
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
       decoration: InputDecoration(
         hintText: hintText,

@@ -1,4 +1,4 @@
 class RouteName {
   static const onBoarding = '/onBoarding';
-  static const  homePage = '/honePage';
+  static const  homePage = '/homePage';
 }

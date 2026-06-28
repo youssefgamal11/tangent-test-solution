@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
+import 'package:tangent_test_solution/features/onBoarding/presentation/cubits/cubit.dart';
 
 const _topics = [
   'Business',
@@ -16,73 +18,62 @@ const _topics = [
   'History',
 ];
 
-class OnboardingStepThreeWidget extends StatefulWidget {
+class OnboardingStepThreeWidget extends StatelessWidget {
   const OnboardingStepThreeWidget({super.key});
 
   @override
-  State<OnboardingStepThreeWidget> createState() =>
-      _OnboardingStepThreeWidgetState();
-}
-
-class _OnboardingStepThreeWidgetState extends State<OnboardingStepThreeWidget> {
-  final Set<String> _selected = {};
-
-  void _toggle(String topic) {
-    setState(() {
-      _selected.contains(topic)
-          ? _selected.remove(topic)
-          : _selected.add(topic);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(height: 160.h),
-          Text(
-            'Which topics\ninterest you?',
-            textAlign: TextAlign.center,
-            style: AppTextStyle.sb22,
+    return BlocBuilder<OnboardingCubit, OnboardingState>(
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: 160.h),
+              Text(
+                'Which topics\ninterest you?',
+                textAlign: TextAlign.center,
+                style: AppTextStyle.sb22,
+              ),
+              SizedBox(height: 10.h),
+              Text(
+                "Pick as many as you like",
+                style: AppTextStyle.r14.copyWith(color: AppColors.grey),
+              ),
+              SizedBox(height: 20.h),
+              Wrap(
+                spacing: 10.w,
+                runSpacing: 10.h,
+                alignment: WrapAlignment.center,
+                children: _topics
+                    .map(
+                      (topic) => _TopicChip(
+                        label: topic,
+                        isSelected: state.selectedTopics.contains(topic),
+                        onTap: () =>
+                            context.read<OnboardingCubit>().toggleTopic(topic),
+                      ),
+                    )
+                    .toList(),
+              ),
+              const Spacer(),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                child: state.selectedTopics.isEmpty
+                    ? SizedBox.shrink(key: const ValueKey('empty'))
+                    : Text(
+                        '${state.selectedTopics.length} selected',
+                        key: ValueKey(state.selectedTopics.length),
+                        style:
+                            AppTextStyle.r12.copyWith(color: AppColors.grey),
+                      ),
+              ),
+              SizedBox(height: 12.h),
+            ],
           ),
-          SizedBox(height: 10.h),
-
-          Text(
-            "Pick as many as you like",
-            style: AppTextStyle.r14.copyWith(color: AppColors.grey),
-          ),
-          SizedBox(height: 20.h),
-          Wrap(
-            spacing: 10.w,
-            runSpacing: 10.h,
-            alignment: WrapAlignment.center,
-            children: _topics
-                .map(
-                  (topic) => _TopicChip(
-                    label: topic,
-                    isSelected: _selected.contains(topic),
-                    onTap: () => _toggle(topic),
-                  ),
-                )
-                .toList(),
-          ),
-          const Spacer(),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 200),
-            child: _selected.isEmpty
-                ? SizedBox.shrink(key: const ValueKey('empty'))
-                : Text(
-                    '${_selected.length} selected',
-                    key: ValueKey(_selected.length),
-                    style: AppTextStyle.r12.copyWith(color: AppColors.grey),
-                  ),
-          ),
-          SizedBox(height: 12.h),
-        ],
-      ),
+        );
+      },
     );
   }
 }
