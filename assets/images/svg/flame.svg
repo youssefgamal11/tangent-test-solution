@@ -1,0 +1,57 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- OUTER GLOW -->
+  <radialGradient id="flameGlow" cx="50%" cy="60%" r="50%">
+    <stop offset="0%" stop-color="#FF6B6B" stop-opacity="0.2"/>
+    <stop offset="100%" stop-color="#FF6B6B" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="60" cy="65" r="48" fill="url(#flameGlow)"/>
+
+  <!-- BACK FLAME — indigo -->
+  <path d="M60 10
+    C60 10 84 34 86 54
+    C88 66 80 74 76 80
+    C73 68 68 58 60 52
+    C52 58 47 68 44 80
+    C40 74 32 66 34 54
+    C36 34 60 10 60 10Z"
+    fill="#6366F1" opacity="0.45"/>
+
+  <!-- MAIN FLAME — coral -->
+  <path d="M60 18
+    C60 18 82 40 84 58
+    C86 70 78 80 74 85
+    C71 73 66 62 60 56
+    C54 62 49 73 46 85
+    C42 80 34 70 36 58
+    C38 40 60 18 60 18Z"
+    fill="#FF6B6B"/>
+
+  <!-- INNER FLAME — lighter -->
+  <path d="M60 32
+    C60 32 74 50 75 62
+    C76 70 72 78 69 83
+    C67 73 64 64 60 60
+    C56 64 53 73 51 83
+    C48 78 44 70 45 62
+    C46 50 60 32 60 32Z"
+    fill="#FF8E8E"/>
+
+  <!-- CORE WHITE HOT -->
+  <path d="M60 48
+    C60 48 67 58 68 65
+    C68.5 70 66 75 64 78
+    C63 72 61.5 66 60 63
+    C58.5 66 57 72 56 78
+    C54 75 51.5 70 52 65
+    C53 58 60 48 60 48Z"
+    fill="#FFF0F0" opacity="0.85"/>
+
+  <!-- TOP SPARKLE DOTS -->
+  <circle cx="60" cy="6"  r="2.5" fill="#FF6B6B" opacity="0.5"/>
+  <circle cx="47" cy="10" r="1.8" fill="#FF8E8E" opacity="0.4"/>
+  <circle cx="73" cy="10" r="1.8" fill="#FF8E8E" opacity="0.4"/>
+  <circle cx="38" cy="20" r="1.5" fill="#6366F1" opacity="0.35"/>
+  <circle cx="82" cy="20" r="1.5" fill="#6366F1" opacity="0.35"/>
+
+</svg>

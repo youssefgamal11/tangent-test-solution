@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tangent_test_solution/features/home/presentation/cubits/cubit.dart';
 import 'package:tangent_test_solution/features/home/presentation/pages/home_page.dart';
 import 'package:tangent_test_solution/features/onBoarding/presentation/cubits/cubit.dart';
 import 'package:tangent_test_solution/features/onBoarding/presentation/pages/onBoarding_page.dart';
@@ -16,7 +17,10 @@ class AppRouter {
         );
       case RouteName.homePage:
         return MaterialPageRoute(
-          builder: (_) => const HomePage(),
+          builder: (_) => BlocProvider(
+            create: (_) => HomeCubit()..init(),
+            child: const HomePage(),
+          ),
         );
  
       default:

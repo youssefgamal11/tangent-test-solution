@@ -16,6 +16,7 @@ class AppTextStyle {
   static TextStyle sb22 = TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600, fontFamily: playfairFamily, color: AppColors.white, height: 1.3);
 
   static TextStyle b11  = TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w700, fontFamily: fontFamily,     color: AppColors.white, height: 1);
+  static TextStyle b14  = TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700, fontFamily: fontFamily,     color: AppColors.white, height: 1);
   static TextStyle b18  = TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700, fontFamily: fontFamily,     color: AppColors.white, height: 1);
 
   

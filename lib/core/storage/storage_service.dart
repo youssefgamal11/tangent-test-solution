@@ -42,4 +42,15 @@ class StorageService {
 
   static bool get isOnboardingCompleted =>
       getBool('onboarding_completed') == true;
+
+  static Future<String?> getUserName() => getString('user_name');
+
+  static Future<List<String>?> getSelectedTopics() =>
+      getStringList('selected_topics');
+
+  static Future<List<String>> getCompletedDates() async =>
+      (await getStringList('completed_dates')) ?? [];
+
+  static Future<void> saveCompletedDates(List<String> dates) =>
+      setStringList('completed_dates', dates);
 }
