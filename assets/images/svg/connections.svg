@@ -1,0 +1,57 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- OUTER GLOW BG -->
+  <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#6366F1" stop-opacity="0.1"/>
+    <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="100" cy="100" r="98" fill="url(#bgGlow)"/>
+
+  <!-- OUTER DASHED RING -->
+  <circle cx="100" cy="100" r="90" stroke="#263348" stroke-width="1" stroke-dasharray="4,5"/>
+
+  <!-- MID RING -->
+  <circle cx="100" cy="100" r="72" stroke="#1E293B" stroke-width="1.5"/>
+
+  <!-- CONNECTION LINE between two people -->
+  <line x1="62" y1="100" x2="138" y2="100" stroke="#6366F1" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
+
+  <!-- CENTER DOT on line -->
+  <circle cx="100" cy="100" r="4" fill="#6366F1" opacity="0.5"/>
+  <circle cx="100" cy="100" r="2" fill="#22D3EE"/>
+
+  <!-- LEFT PERSON -->
+  <!-- head -->
+  <circle cx="58" cy="76" r="14" fill="none" stroke="#6366F1" stroke-width="2"/>
+  <!-- body -->
+  <path d="M34 118c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#6366F1" stroke-width="2" stroke-linecap="round"/>
+  <!-- cyan accent dot -->
+  <circle cx="58" cy="62" r="3" fill="#22D3EE"/>
+  <!-- left sparkles -->
+  <circle cx="38" cy="70" r="2" fill="#6366F1" opacity="0.4"/>
+  <circle cx="78" cy="70" r="2" fill="#6366F1" opacity="0.4"/>
+  <circle cx="34" cy="112" r="1.5" fill="#22D3EE" opacity="0.3"/>
+
+  <!-- RIGHT PERSON -->
+  <!-- head -->
+  <circle cx="142" cy="76" r="14" fill="none" stroke="#22D3EE" stroke-width="2"/>
+  <!-- body -->
+  <path d="M118 118c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#22D3EE" stroke-width="2" stroke-linecap="round"/>
+  <!-- indigo accent dot -->
+  <circle cx="142" cy="62" r="3" fill="#6366F1"/>
+  <!-- right sparkles -->
+  <circle cx="122" cy="70" r="2" fill="#22D3EE" opacity="0.4"/>
+  <circle cx="162" cy="70" r="2" fill="#22D3EE" opacity="0.4"/>
+  <circle cx="166" cy="112" r="1.5" fill="#6366F1" opacity="0.3"/>
+
+  <!-- FLOATING DOTS -->
+  <circle cx="100" cy="22"  r="3"   fill="#6366F1" opacity="0.35"/>
+  <circle cx="100" cy="178" r="3"   fill="#22D3EE" opacity="0.35"/>
+  <circle cx="22"  cy="100" r="2.5" fill="#22D3EE" opacity="0.3"/>
+  <circle cx="178" cy="100" r="2.5" fill="#6366F1" opacity="0.3"/>
+  <circle cx="36"  cy="40"  r="2"   fill="#6366F1" opacity="0.25"/>
+  <circle cx="164" cy="40"  r="2"   fill="#22D3EE" opacity="0.25"/>
+  <circle cx="36"  cy="160" r="2"   fill="#22D3EE" opacity="0.2"/>
+  <circle cx="164" cy="160" r="2"   fill="#6366F1" opacity="0.2"/>
+
+</svg>

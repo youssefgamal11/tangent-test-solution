@@ -8,15 +8,17 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.buttonLabel,
+    this.padding,
   });
 
   final VoidCallback onPressed;
   final String buttonLabel;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+      padding: padding ?? EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
       child: SizedBox(
         width: double.infinity,
         height: 56.h,

@@ -8,6 +8,7 @@ class AppTextStyle {
 
   static TextStyle r10  = TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400, fontFamily: fontFamily, color: AppColors.white, height: 1);
   static TextStyle r12  = TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400, fontFamily: fontFamily, color: AppColors.white, height: 1);
+  static TextStyle r13  = TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400, fontFamily: fontFamily, color: AppColors.white, height: 1.5);
   static TextStyle r14  = TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, fontFamily: fontFamily, color: AppColors.white, height: 1);
   static TextStyle r16  = TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400, fontFamily: fontFamily, color: AppColors.white, height: 1);
 
@@ -21,6 +22,7 @@ class AppTextStyle {
 
   
   static TextStyle eb16 = TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w800, fontFamily: fontFamily,     color: AppColors.white, height: 1);
+  static TextStyle eb24 = TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w800, fontFamily: playfairFamily,     color: AppColors.white, height: 1.3);
   static TextStyle eb28 = TextStyle(fontSize: 28.sp, fontWeight: FontWeight.w800, fontFamily: playfairFamily, color: AppColors.white, height: 1.3);
   static TextStyle eb36 = TextStyle(fontSize: 36.sp, fontWeight: FontWeight.w800, fontFamily: playfairFamily, color: AppColors.white, height: 1.2);
 }

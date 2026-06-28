@@ -27,6 +27,7 @@ dependencies:
 
   #local storage
   shared_preferences: ^2.5.5
+  url_launcher: ^6.3.2
 
   
 

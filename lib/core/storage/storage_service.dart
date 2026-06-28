@@ -45,6 +45,11 @@ class StorageService {
 
   static Future<String?> getUserName() => getString('user_name');
 
+  static Future<void> saveUserPhone(String phone) =>
+      setString('user_phone', phone);
+
+  static Future<String?> getUserPhone() => getString('user_phone');
+
   static Future<List<String>?> getSelectedTopics() =>
       getStringList('selected_topics');
 

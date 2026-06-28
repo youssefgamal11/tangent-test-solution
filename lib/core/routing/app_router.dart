@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tangent_test_solution/features/findLearners/presentation/cubits/cubit.dart';
+import 'package:tangent_test_solution/features/findLearners/presentation/pages/find_learners_page.dart';
 import 'package:tangent_test_solution/features/home/presentation/cubits/cubit.dart';
 import 'package:tangent_test_solution/features/home/presentation/pages/home_page.dart';
 import 'package:tangent_test_solution/features/onBoarding/presentation/cubits/cubit.dart';
@@ -13,7 +15,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => OnboardingCubit(),
-            child: const OnboardingPage()),
+            child: const OnboardingPage(),
+          ),
         );
       case RouteName.homePage:
         return MaterialPageRoute(
@@ -22,7 +25,13 @@ class AppRouter {
             child: const HomePage(),
           ),
         );
- 
+      case RouteName.findLearners:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => FindLearnersCubit()..init(),
+            child: const FindLearnersPage(),
+          ),
+        );
       default:
         return MaterialPageRoute(builder: (_) => const SizedBox());
     }
