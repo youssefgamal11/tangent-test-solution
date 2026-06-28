@@ -28,7 +28,18 @@ class StorageService {
   }
 
   static Future<List<String>?> getStringList(String key) async {
-    
     return _sharedPreferences?.getStringList(key);
   }
+
+  static Future<void> saveUserName(String name) =>
+      setString('user_name', name);
+
+  static Future<void> saveSelectedTopics(List<String> topics) =>
+      setStringList('selected_topics', topics);
+
+  static Future<void> saveOnboardingCompleted() =>
+      setBool('onboarding_completed', true);
+
+  static bool get isOnboardingCompleted =>
+      getBool('onboarding_completed') == true;
 }

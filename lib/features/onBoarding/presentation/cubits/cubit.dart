@@ -42,10 +42,10 @@ class OnboardingCubit extends Cubit<OnboardingState> {
 
   Future<void> nextPage() async {
     final page = state.currentPage;
-    if (page == 1) await _saveUserName(state.userName);
-    if (page == 2) await _saveSelectedTopics(state.selectedTopics);
+    if (page == 1) await StorageService.saveUserName(state.userName);
+    if (page == 2) await StorageService.saveSelectedTopics(state.selectedTopics);
     if (page == totalPages - 1) {
-      await _saveOnboardingCompleted();
+      await StorageService.saveOnboardingCompleted();
       NavigationService.navigatorKey.currentState?.pushNamedAndRemoveUntil(
        RouteName.homePage,
         (route) => false,
@@ -59,15 +59,6 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   void skipToLast() => pageController.jumpToPage(totalPages - 1);
-
-  Future<void> _saveUserName(String name) =>
-      StorageService.setString('user_name', name);
-
-  Future<void> _saveSelectedTopics(List<String> topics) =>
-      StorageService.setStringList('selected_topics', topics);
-
-  Future<void> _saveOnboardingCompleted() =>
-      StorageService.setBool('onboarding_completed', true);
 
   @override
   Future<void> close() {

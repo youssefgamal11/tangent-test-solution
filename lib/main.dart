@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           fontFamily: AppTextStyle.fontFamily,
           useMaterial3: true,
         ),
-        initialRoute: StorageService.getBool('onboarding_completed') == true
+        initialRoute: StorageService.isOnboardingCompleted
             ? RouteName.homePage
             : RouteName.onBoarding,
         onGenerateRoute: AppRouter.allRoutes,
