@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
-import 'package:tangent_test_solution/features/findLearners/presentation/cubits/states.dart';
+import 'package:tangent_test_solution/features/shared/models/learner_model.dart';
 import 'package:tangent_test_solution/features/findLearners/presentation/widgets/level_badge.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tangent_test_solution/core/utils/img_paths.dart';

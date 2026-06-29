@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
-import 'package:tangent_test_solution/features/home/presentation/cubits/cubit.dart';
+import 'package:tangent_test_solution/features/shared/models/word_card.dart';
 
 class WordSwipeCard extends StatelessWidget {
   const WordSwipeCard({

@@ -6,10 +6,7 @@ import 'package:tangent_test_solution/core/theme/text_style.dart';
 class ConnectionsAppBar extends StatelessWidget {
   const ConnectionsAppBar({
     super.key,
-
   });
-
-
 
   @override
   Widget build(BuildContext context) {

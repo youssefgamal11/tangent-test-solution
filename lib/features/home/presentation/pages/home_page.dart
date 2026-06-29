@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tangent_test_solution/core/routing/route_names.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
 import 'package:tangent_test_solution/features/home/presentation/cubits/cubit.dart';
@@ -67,8 +66,7 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 FindLearnersCard(
-                  onTap: () => Navigator.of(context)
-                      .pushNamed(RouteName.findLearners),
+                  onTap: cubit.navigateToFindLearners,
                 ),
                 SizedBox(height: 24.h),
               ],

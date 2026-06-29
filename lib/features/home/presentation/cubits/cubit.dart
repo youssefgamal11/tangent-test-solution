@@ -1,45 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tangent_test_solution/core/routing/navigation_services.dart';
+import 'package:tangent_test_solution/core/routing/route_names.dart';
 import 'package:tangent_test_solution/core/storage/storage_service.dart';
+import 'package:tangent_test_solution/features/shared/data/words_data.dart';
+import 'package:tangent_test_solution/features/shared/models/word_card.dart';
 
 part 'states.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final PageController pageController = PageController(viewportFraction: 0.75);
-
-  static const _sessionWords = [
-    WordCard(
-      word: 'Altruistic',
-      partOfSpeech: 'adjective',
-      pronunciation: '/ æltruˈɪstɪk/',
-      definition: 'Caring for others without expecting anything in return',
-    ),
-    WordCard(
-      word: 'Ephemeral',
-      partOfSpeech: 'adjective',
-      pronunciation: '/ ɪˈfem(ə)r(ə)l/',
-      definition: 'Lasting for a very short time',
-    ),
-    WordCard(
-      word: 'Eloquent',
-      partOfSpeech: 'adjective',
-      pronunciation: '/ ˈeləkwənt/',
-      definition: 'Fluent or persuasive in speaking or writing',
-    ),
-    WordCard(
-      word: 'Resilient',
-      partOfSpeech: 'adjective',
-      pronunciation: '/ rɪˈzɪlɪənt/',
-      definition: 'Able to recover quickly from difficulties',
-    ),
-    WordCard(
-      word: 'Sanguine',
-      partOfSpeech: 'adjective',
-      pronunciation: '/ ˈsæŋɡwɪn/',
-      definition: 'Optimistic, especially in a difficult situation',
-    ),
-  ];
 
   HomeCubit()
       : super(const HomeState(
@@ -47,7 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
           wordsCompleted: 1,
           dailyGoal: 5,
           weeklyProgress: [false, false, false, false, false, false, false],
-          sessionWords: _sessionWords,
+          sessionWords: sessionWords,
           currentCardIndex: 0,
         ));
 
@@ -96,6 +67,15 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void resetStreakToast() => emit(state.copyWith(showStreakToast: false));
+
+  Future<void> navigateToFindLearners() async {
+    final name = await StorageService.getUserName();
+    final phone = await StorageService.getUserPhone();
+    final hasData = (name?.isNotEmpty ?? false) && (phone?.isNotEmpty ?? false);
+    NavigationService.navigatorKey.currentState?.pushNamed(
+      hasData ? RouteName.connections : RouteName.findLearners,
+    );
+  }
 
   void onCardChanged(int index) => emit(state.copyWith(
         currentCardIndex: index,
