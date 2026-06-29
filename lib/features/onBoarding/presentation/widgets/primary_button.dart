@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
@@ -18,12 +19,16 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+      padding:
+          padding ?? EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
       child: SizedBox(
         width: double.infinity,
         height: 56.h,
         child: ElevatedButton(
-          onPressed: onPressed,
+          onPressed: () async {
+            await HapticFeedback.lightImpact();
+            onPressed();
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.indigo,
             foregroundColor: AppColors.white,
@@ -34,10 +39,8 @@ class PrimaryButton extends StatelessWidget {
           ),
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 250),
-            transitionBuilder: (child, animation) => FadeTransition(
-              opacity: animation,
-              child: child,
-            ),
+            transitionBuilder: (child, animation) =>
+                FadeTransition(opacity: animation, child: child),
             child: Text(
               buttonLabel,
               key: ValueKey(buttonLabel),

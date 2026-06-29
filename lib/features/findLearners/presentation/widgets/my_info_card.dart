@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
@@ -51,7 +52,10 @@ class MyInfoCard extends StatelessWidget {
           ),
           if (onEdit != null)
             GestureDetector(
-              onTap: onEdit,
+              onTap: () {
+                HapticFeedback.lightImpact();
+                onEdit!();
+              },
               child: Text(
                 'Edit',
                 style: AppTextStyle.r12.copyWith(color: AppColors.indigo),

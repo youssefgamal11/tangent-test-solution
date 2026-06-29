@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
@@ -38,7 +39,10 @@ class _FindLearnersCardState extends State<FindLearnersCard>
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: GestureDetector(
-        onTap: widget.onTap,
+        onTap: widget.onTap == null ? null : () {
+          HapticFeedback.mediumImpact();
+          widget.onTap!();
+        },
         child: AnimatedBuilder(
           animation: _controller,
           builder: (context, child) {

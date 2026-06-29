@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/routing/app_router.dart';
 import 'package:tangent_test_solution/core/routing/navigation_services.dart';
@@ -10,6 +11,7 @@ import 'package:tangent_test_solution/core/theme/text_style.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageService().init();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(const MyApp());
 }
@@ -26,15 +28,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: NavigationService.navigatorKey,
         debugShowCheckedModeBanner: false,
-        title: 'Vocaburary',
+        title: 'Vocabulary',
         theme: ThemeData(
           fontFamily: AppTextStyle.fontFamily,
           useMaterial3: true,
         ),
-        initialRoute: RouteName.onBoarding,
-        // StorageService.isOnboardingCompleted
-        //     ? RouteName.homePage
-        //     : RouteName.onBoarding,
+        initialRoute: 
+        StorageService.isOnboardingCompleted
+            ? RouteName.homePage
+            : RouteName.onBoarding,
         onGenerateRoute: AppRouter.allRoutes,
       ),
     );

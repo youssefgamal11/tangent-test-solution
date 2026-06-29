@@ -65,7 +65,7 @@ class _OnboardingStepFourWidgetState extends State<OnboardingStepFourWidget>
   }
 
   void onPageChanged() {
-    if (pageController.page == 3.0 &&
+    if ((pageController.page ?? 0) >= 2.85 &&
         !controller.isAnimating &&
         controller.value == 0) {
       controller.forward();

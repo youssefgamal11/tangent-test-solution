@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
@@ -61,7 +62,7 @@ class _OnboardingStepThreeWidgetState extends State<OnboardingStepThreeWidget>
   }
 
   void onPageChanged() {
-    if (pageController.page == 2.0 &&
+    if ((pageController.page ?? 0) >= 1.85 &&
         !controller.isAnimating &&
         controller.value == 0) {
       controller.forward();
@@ -116,9 +117,10 @@ class _OnboardingStepThreeWidgetState extends State<OnboardingStepThreeWidget>
                         (topic) => TopicChip(
                           label: topic,
                           isSelected: state.selectedTopics.contains(topic),
-                          onTap: () => context
-                              .read<OnboardingCubit>()
-                              .toggleTopic(topic),
+                          onTap: () {
+                            HapticFeedback.selectionClick();
+                            context.read<OnboardingCubit>().toggleTopic(topic);
+                          },
                         ),
                       )
                       .toList(),

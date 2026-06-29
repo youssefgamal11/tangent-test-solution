@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
@@ -14,6 +15,7 @@ class LearnerCard extends StatelessWidget {
   final LearnerModel learner;
 
   Future<void> _openWhatsApp() async {
+    HapticFeedback.mediumImpact();
     final digits = learner.phone.replaceAll(RegExp(r'[^\d]'), '');
     final uri = Uri.parse('https://wa.me/$digits');
     if (await canLaunchUrl(uri)) {

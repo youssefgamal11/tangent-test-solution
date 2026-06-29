@@ -32,47 +32,115 @@ class HomeStatsBar extends StatelessWidget {
   }
 }
 
-class _StreakBadge extends StatelessWidget {
+class _StreakBadge extends StatefulWidget {
   const _StreakBadge({required this.streak});
 
   final int streak;
 
   @override
+  State<_StreakBadge> createState() => _StreakBadgeState();
+}
+
+class _StreakBadgeState extends State<_StreakBadge>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    );
+    controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Future.delayed(const Duration(seconds: 4), () {
+          if (mounted) {
+            controller.reset();
+            controller.forward();
+          }
+        });
+      }
+    });
+    controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
-      decoration: BoxDecoration(
-        color: AppColors.slateBlue,
-        borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(color: AppColors.steelBlue, width: 1.5),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Lottie.asset(
-            ImgPath.flameAnimation,
-            width: 52.w,
-            height: 52.w,
-            fit: BoxFit.fill,
+    final content = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Lottie.asset(
+          ImgPath.flameAnimation,
+          width: 52.w,
+          height: 52.w,
+          fit: BoxFit.fill,
+        ),
+        SizedBox(width: 6.w),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${widget.streak}',
+              style: AppTextStyle.b14.copyWith(color: AppColors.coral),
+            ),
+            SizedBox(height: 2.h),
+            Text(
+              'streak',
+              style: AppTextStyle.r10.copyWith(color: AppColors.grey),
+            ),
+          ],
+        ),
+      ],
+    );
+
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (_, _) {
+        final p = controller.value;
+        return Container(
+          decoration: BoxDecoration(
+            color: AppColors.slateBlue,
+            borderRadius: BorderRadius.circular(20.r),
+            border: Border.all(color: AppColors.steelBlue, width: 1.5),
           ),
-          SizedBox(width: 6.w),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '$streak',
-                style: AppTextStyle.b14.copyWith(color: AppColors.coral),
-              ),
-              SizedBox(height: 2.h),
-              Text(
-                'streak',
-                style: AppTextStyle.r10.copyWith(color: AppColors.grey),
-              ),
-            ],
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20.r),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
+                  child: content,
+                ),
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(-1.6 + p * 3.2, -1.0),
+                        end: Alignment(-1.0 + p * 3.2, 1.0),
+                        colors: [
+                          Colors.transparent,
+                          Colors.white.withValues(alpha: 0.08),
+                          Colors.white.withValues(alpha: 0.18),
+                          Colors.white.withValues(alpha: 0.08),
+                          Colors.transparent,
+                        ],
+                        stops: const [0.0, 0.35, 0.5, 0.65, 1.0],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-     
-        ],
-      ),
+        );
+      },
     );
   }
 }

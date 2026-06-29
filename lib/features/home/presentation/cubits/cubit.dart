@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tangent_test_solution/core/routing/navigation_services.dart';
 import 'package:tangent_test_solution/core/routing/route_names.dart';
@@ -18,7 +21,7 @@ class HomeCubit extends Cubit<HomeState> {
           wordsCompleted: 1,
           dailyGoal: 5,
           weeklyProgress: [false, false, false, false, false, false, false],
-          sessionWords: sessionWords,
+          sessionWords: [],
           currentCardIndex: 0,
         ));
 
@@ -57,13 +60,32 @@ class HomeCubit extends Cubit<HomeState> {
       await StorageService.saveCompletedDates(completedDates);
     }
 
+    final selectedTopics = await StorageService.getSelectedTopics() ?? [];
+
     emit(state.copyWith(
       streak: _calculateStreak(completedDates),
       weeklyProgress: _buildWeeklyProgress(completedDates),
       showStreakToast: isNewDay,
+      sessionWords: _pickDailyWords(selectedTopics, todayKey),
     ));
+  }
 
-  
+  static List<WordCard> _pickDailyWords(
+      List<String> selectedTopics, String dateKey) {
+    final activeTopics = selectedTopics.isEmpty
+        ? wordsByTopic.keys.toList()
+        : selectedTopics.where(wordsByTopic.containsKey).toList();
+
+    final pool = activeTopics
+        .expand((t) => wordsByTopic[t] ?? <WordCard>[])
+        .toList();
+
+    if (pool.isEmpty) {
+      return wordsByTopic.values.expand((w) => w).take(5).toList();
+    }
+
+    final seed = int.parse(dateKey.replaceAll('-', ''));
+    return (List<WordCard>.from(pool)..shuffle(Random(seed))).take(5).toList();
   }
 
   void resetStreakToast() => emit(state.copyWith(showStreakToast: false));
@@ -77,10 +99,13 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  void onCardChanged(int index) => emit(state.copyWith(
-        currentCardIndex: index,
-        wordsCompleted: index + 1,
-      ));
+  void onCardChanged(int index) {
+    if (index + 1 == state.dailyGoal) HapticFeedback.heavyImpact();
+    emit(state.copyWith(
+      currentCardIndex: index,
+      wordsCompleted: index + 1,
+    ));
+  }
 
   @override
   Future<void> close() {

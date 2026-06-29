@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
 import 'package:tangent_test_solution/core/theme/text_style.dart';
@@ -15,7 +16,10 @@ class ConnectionsAppBar extends StatelessWidget {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () => Navigator.of(context).pop(),
+            onTap: () {
+              HapticFeedback.lightImpact();
+              Navigator.of(context).pop();
+            },
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -29,7 +33,7 @@ class ConnectionsAppBar extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: 60.w),
+          SizedBox(width: 70.w),
           Text(
             'Connections',
             style: AppTextStyle.b18,

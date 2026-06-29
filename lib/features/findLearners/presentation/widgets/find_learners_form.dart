@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -123,8 +124,10 @@ class _FindLearnersFormState extends State<FindLearnersForm> {
                 children: [
                   Checkbox(
                     value: agreed,
-                    onChanged: (_) =>
-                        agreedToShare.value = !agreedToShare.value,
+                    onChanged: (_) {
+                      HapticFeedback.selectionClick();
+                      agreedToShare.value = !agreedToShare.value;
+                    },
                     activeColor: AppColors.indigo,
                     side: BorderSide(color: AppColors.steelBlue, width: 1.5),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -132,7 +135,10 @@ class _FindLearnersFormState extends State<FindLearnersForm> {
                   SizedBox(width: 8.w),
                   Expanded(
                     child: GestureDetector(
-                      onTap: () => agreedToShare.value = !agreedToShare.value,
+                      onTap: () {
+                        HapticFeedback.selectionClick();
+                        agreedToShare.value = !agreedToShare.value;
+                      },
                       child: Padding(
                         padding: EdgeInsets.only(top: 11.h),
                         child: Text(

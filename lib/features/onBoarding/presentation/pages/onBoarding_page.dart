@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tangent_test_solution/core/theme/colors.dart';
@@ -30,7 +31,12 @@ class OnboardingPage extends StatelessWidget {
                     duration: const Duration(milliseconds: 250),
                     opacity: state.showSkip ? 1.0 : 0.0,
                     child: TextButton(
-                      onPressed: state.showSkip ? cubit.skipToLast : null,
+                      onPressed: state.showSkip
+                          ? () {
+                              HapticFeedback.lightImpact();
+                              cubit.skipToLast();
+                            }
+                          : null,
                       child: Text(
                         'Skip',
                         style: AppTextStyle.r16.copyWith(

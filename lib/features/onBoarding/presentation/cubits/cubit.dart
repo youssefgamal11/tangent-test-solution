@@ -20,17 +20,21 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   ];
 
   OnboardingCubit()
-      : super(OnboardingState(
+    : super(
+        OnboardingState(
           currentPage: 0,
           showSkip: false,
           buttonLabel: buttonLabels[0],
-        ));
+        ),
+      );
 
-  void onPageChanged(int index) => emit(state.copyWith(
-        currentPage: index,
-        showSkip: index == 1 || index == 2,
-        buttonLabel: buttonLabels[index],
-      ));
+  void onPageChanged(int index) => emit(
+    state.copyWith(
+      currentPage: index,
+      showSkip: index == 1 || index == 2,
+      buttonLabel: buttonLabels[index],
+    ),
+  );
 
   void updateUserName(String name) => emit(state.copyWith(userName: name));
 
@@ -43,17 +47,19 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   Future<void> nextPage() async {
     final page = state.currentPage;
     if (page == 1) await StorageService.saveUserName(state.userName);
-    if (page == 2) await StorageService.saveSelectedTopics(state.selectedTopics);
+    if (page == 2) {
+      await StorageService.saveSelectedTopics(state.selectedTopics);
+    }
     if (page == totalPages - 1) {
       await StorageService.saveOnboardingCompleted();
       NavigationService.navigatorKey.currentState?.pushNamedAndRemoveUntil(
-       RouteName.homePage,
+        RouteName.homePage,
         (route) => false,
       );
       return;
     }
     pageController.nextPage(
-      duration: const Duration(milliseconds: 650),
+      duration: const Duration(milliseconds: 480),
       curve: Curves.easeInOutQuint,
     );
   }
