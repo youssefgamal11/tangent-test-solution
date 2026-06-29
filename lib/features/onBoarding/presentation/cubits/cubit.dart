@@ -53,8 +53,8 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       return;
     }
     pageController.nextPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
+      duration: const Duration(milliseconds: 650),
+      curve: Curves.easeInOutQuint,
     );
   }
 

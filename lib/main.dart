@@ -31,9 +31,10 @@ class MyApp extends StatelessWidget {
           fontFamily: AppTextStyle.fontFamily,
           useMaterial3: true,
         ),
-        initialRoute: StorageService.isOnboardingCompleted
-            ? RouteName.homePage
-            : RouteName.onBoarding,
+        initialRoute: RouteName.onBoarding,
+        // StorageService.isOnboardingCompleted
+        //     ? RouteName.homePage
+        //     : RouteName.onBoarding,
         onGenerateRoute: AppRouter.allRoutes,
       ),
     );
