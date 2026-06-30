@@ -84,6 +84,33 @@ Launch
 
 ---
 
+## Screenshots
+
+### Onboarding
+
+<p float="left">
+  <img src="screenshots/on_boarding1.jpeg" width="22%" />
+  <img src="screenshots/on_boarding2.jpeg" width="22%" />
+  <img src="screenshots/on_boarding3.jpeg" width="22%" />
+  <img src="screenshots/on_boarding4.jpeg" width="22%" />
+</p>
+
+### Home
+
+<p float="left">
+  <img src="screenshots/home.jpeg" width="30%" />
+  <img src="screenshots/home_with_toast.jpeg" width="30%" />
+</p>
+
+### Find Learners & Connections
+
+<p float="left">
+  <img src="screenshots/find_learners.jpeg" width="30%" />
+  <img src="screenshots/connections.jpeg" width="30%" />
+</p>
+
+---
+
 ## Getting Started
 
 ### Prerequisites

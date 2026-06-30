@@ -65,7 +65,7 @@ class _WeekStripToastState extends State<WeekStripToast>
     );
 
     controller.forward();
-    Future.delayed(const Duration(milliseconds: 4000), _dismiss);
+    Future.delayed(const Duration(milliseconds: 2500), _dismiss);
   }
 
   Future<void> _dismiss() async {

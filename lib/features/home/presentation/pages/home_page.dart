@@ -24,11 +24,15 @@ class HomePage extends StatelessWidget {
           listenWhen: (prev, curr) =>
               curr.showStreakToast && !prev.showStreakToast,
           listener: (context, state) {
-            WeekStripToast.show(
-              context,
-              streak: state.streak,
-              weeklyProgress: state.weeklyProgress,
-            );
+            Future.delayed(const Duration(seconds: 3), () {
+              if (context.mounted) {
+                WeekStripToast.show(
+                  context,
+                  streak: state.streak,
+                  weeklyProgress: state.weeklyProgress,
+                );
+              }
+            });
             context.read<HomeCubit>().resetStreakToast();
           },
           builder: (context, state) {
