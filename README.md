@@ -84,6 +84,14 @@ Launch
 
 ---
 
+## Demo Video
+
+> iOS screen recording of the full app flow — onboarding, home screen, and Find Learners.
+
+[▶ Watch Demo (Vocabulary.mp4)](screenshots/Vocabulary.mp4)
+
+---
+
 ## Screenshots
 
 ### Onboarding
